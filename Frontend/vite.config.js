@@ -8,7 +8,7 @@ export default defineConfig({
   
   server: {
    proxy: {
-      '/users':'https://jsonplaceholder.typicode.com/'
+      '/api':'http://localhost:3000'
     }
  },
 
