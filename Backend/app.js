@@ -4,10 +4,15 @@ configDotenv();
 import express, { json } from 'express'
 import userRoutes from './routes/user.routes.js'
 import { connectdb } from './Database/dbconnect.js';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import resumeroutes from './routes/resume.routes.js';
 
 const app = express()
 connectdb();
 app.use(express.json());
+app.use(cors())
+app.use(cookieParser())
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -17,6 +22,8 @@ app.get('/', (req, res) => {
 })
 
 app.use('/user',userRoutes)
+app.use('/api',resumeroutes);
+
 
 const port = process.env.PORT;
 app.listen(port, () => {
